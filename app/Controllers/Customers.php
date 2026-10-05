@@ -1,21 +1,33 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\customerModel;
+use App\Models\CustomerModel;
 class Customers extends BaseController
 {
    
+
+public function index()
+{
+    $customerModel = new CustomerModel();
+
+    $customers = $customerModel->findAll();
+
+    return view('customers/index', ['customers' => $customers]);
+}
+
+
+
 public function new(){
 return view('customers/new');
 
 }
 public function edit($id)
 {
-    $userModel = new UserModel();
+    $customerModel = new CustomerModel();
 
-    $user = $userModel->find($id);
+    $customer = $customerModel->find($id);
 
-    return view('users/edit', ['user' => $user]);
+    return view('customers/edit', ['customer' => $customer]);
 }
 
 public function create(){

@@ -24,36 +24,27 @@
 
     <tr>
 
-    <th>Avatar</th>
-    <th>ID</th>
-    <th>Username</th>
-    <th>Full name</th>
 
+
+    <th>ID</th>
+    <th>Email</th>
+    <th>Full name</th>
+    <th>Phone</th>
+    <th>Action</th>
 
     </tr>
-    <?php foreach ($users as $user): ?>
+    <?php foreach ($customers as $customer): ?>
     <tr>
-    <td>
-    <?php  if(!empty($user['avatar'])): ?>
+    
+<td> <?= $customer['id']?> </td>
+<td> <?=  esc($customer['email']);?> </td>
 
-    <img src="/uploads/<?= esc($user['avatar']) ?>" alt="user Avatar"  width ="100" height ="100"  >
-    <?php endif; ?>
+<td> <?= esc($customer['full_name']);?> </td>
 
-
-
-
-
-
-    </td>
-
-<td> <?= $user['id']?> </td>
-<td> <?=  esc($user['username']);?> </td>
-
-<td> <?= esc($user['full_name']);?> </td>
+<td> <?= esc($customer['phone']);?> </td>
 <td>
-    <a href="/users/<?= $user['id']?>/edit">Edit list</a>
+    <a href="/customers/<?= $customer['id']?>/edit">Edit list</a>
 </td>
-
     </tr>
 
     <?php endforeach; ?>

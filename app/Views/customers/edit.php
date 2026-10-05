@@ -20,32 +20,23 @@
 
 
 
-<form action="/users/<?= $user['id'] ?>/edit"
-      method="post"
-      enctype="multipart/form-data">
+<form action="/customers/<?= $customer['id'] ?>/edit"method="post">
       
       <?= csrf_field()?>
 
-<label for="">Username</label>
-<input type="text" name = "username" value ="<?= esc($user['username'])?>">
+<label for="">Email</label>
+<input type="email" name = "email" value ="<?= esc($customer['email'])?>">
+
+<br>
+<label for="">phone</label>
+<input type="text" name = "phone" value ="<?= esc($customer['phone'])?>">
 
 <br>
 
 <label for="">Full name</label>
-<input type="text" name = "full_name" value ="<?= esc($user['full_name'])?>"><br>
+<input type="text" name = "full_name" value ="<?= esc($customer['full_name'])?>"><br>
+
 <br>
-<label for="">picture</label>
-<input type="file" name = "avatar" accept =".jpeg,.jpg,.png" ?>
-<br>
-
-
-<label for="">Password</label>
-<input type="password" name = "password" ><br>
-
-
-
-
-
 <button type = "submit">UPdate</button>
     </form>
 </body>

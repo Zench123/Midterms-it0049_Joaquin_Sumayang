@@ -6,7 +6,7 @@
     <title>Profile list</title>
 </head>
 <body>
-    <h1>tasks list</h1>
+    <h1>profile</h1>
 <nav>
     <a href="/">Home</a>
     <a href="/tasks">Tasks</a>
@@ -15,21 +15,22 @@
     <a href="/users">Users</a>
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
-    <a href="/about">About</a>
+    <a href="/about">About</a>   <a href="/logout">Logout</a>
 </nav>
 
 
 <table>
     <tr>
 <th>ID</th>
-<th>title</th>
-<th>status</th>
-<th>date</th>    
+<th>Username</th>
+<th>Full Name</th>
+<th>Email</th> 
 </tr>
 
 
 
 <tr>
+    
 <td><?= $profile['id']?>   </td>
 <td><?= $profile['username']?>   </td>
 <td><?= $profile['full_name']?>   </td>

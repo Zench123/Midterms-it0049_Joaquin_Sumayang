@@ -16,6 +16,7 @@
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
     <a href="/about">About</a>
+       <a href="/logout">Logout</a>
 </nav>
 
 <table>

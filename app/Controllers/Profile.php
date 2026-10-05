@@ -9,7 +9,7 @@ class Profile extends BaseController
 
 
 $userModel = new UserModel();
-$profile  =$userModel ->find(12617);
+$profile  =$userModel ->find(1);
 
 
 

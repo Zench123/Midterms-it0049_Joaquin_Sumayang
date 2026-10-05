@@ -14,6 +14,8 @@
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
     <a href="/about">About</a>
+    <a href="/logout">Logout</a>
+    
 </nav>
 
 
@@ -37,6 +39,10 @@ value="<?= old('full_name')?>">
 value="<?= old('username')?>">
 
 <br>
+
+<label for="">Pasword</label>
+<input type="password" name = "password">
+
 
 
 <label for="avatar">Avatar</label>
