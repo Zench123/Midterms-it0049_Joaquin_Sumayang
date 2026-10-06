@@ -52,7 +52,7 @@ $routes->get('/users/(:num)/edit', 'Users::edit/$1',['filter' => 'auth']);
 $routes->post('/users/(:num)/edit', 'Users::update/$1',['filter' => 'auth']);
 
 
-$routes->get('/users/(:num)/delete', 'Users::delete/$1',['filter' => 'auth']);//delete
+$routes->post('/users/(:num)/delete', 'Users::delete/$1',['filter' => 'auth']);//delete
 
 
 //logging routes

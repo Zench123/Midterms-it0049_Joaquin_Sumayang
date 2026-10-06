@@ -17,13 +17,13 @@ public function index()
 //only find !archived
     $products = $productsModel->where('is_archived',0)-> findAll();
 
-    return view('products/index', ['products' => $products]);
+    return view('Products/index', ['products' => $products]);
 }
 
 
 public function new(){
 
-return view('products/new');
+return view('Products/new');
 }
 
 
@@ -34,9 +34,8 @@ public function create(){
     $rules = [
          'name' => 'required',
     
-   'price'=>'required',
-   'stock_quantity' => 'required',
-   'image' =>'required'
+   'price'=>'required|decimal',
+   'stock_quantity' => 'required|integer'
     ];
 
 
@@ -61,7 +60,8 @@ $data = [
 
 'name' => $this->request->getPost('name'),
 'price' => $this->request->getPost('price'),
-'stock_quantity' => $this->request->getPost('stock_quantity')
+'stock_quantity' => $this->request->getPost('stock_quantity'),
+'is_archived' => 0
 
 ];
 
@@ -92,7 +92,7 @@ $data['image'] = $newName;
 }
 
 $productsModel -> insert($data);
-return redirect() -> to('/products');
+return redirect() -> to('/Products');
 
 
 
@@ -171,7 +171,7 @@ $productsModel -> update($id,$data);
 
 
 
-return redirect() -> to('/products');
+return redirect() -> to('/Products');
 
 
 }
@@ -185,7 +185,7 @@ $products = $productsModel -> find($id);
 
 
 
-return view('products/edit',['products'=>$products]);
+return view('Products/edit',['products'=>$products]);
 }
 
 

@@ -15,7 +15,7 @@ public function index()
 
 
 
-    $users = $userModel->findAll();
+    $users = $userModel->  where('is_archived',0)  ->findAll();
 
     return view('users/index', ['users' => $users]);
 }
@@ -33,7 +33,7 @@ public function create(){
     
    'full_name'=>'required',
    'password' => 'required',
-   'email' => 'required'
+   'email' => 'required|valid_email'
     ];
 
 
@@ -60,7 +60,8 @@ $data = [
 'username' => $this->request->getPost('username'),
 'full_name' => $this->request->getPost('full_name'),
 'email' => $this->request->getPost('email'),
-'password' => $hashPass
+'password' => $hashPass,
+'is_required' => 0
 
 ];
 
@@ -101,7 +102,7 @@ $userModel = new UserModel();
 
 
 
-$rules = [ 'username' => 'required',
+$rules = [ 'username' => "required|is_unique[user.username,id,$id]",
 'full_name' => 'required','email'=>'required'
 
 ];
@@ -174,7 +175,7 @@ return view('users/edit',['user'=>$user]);
 public function delete($id){
     $userModel = new UserModel();
   
-$userModel ->delete($id);
+$userModel ->update($id,['is_archived'=>1]);
 
 return redirect()->to('/users');
 }

@@ -50,7 +50,6 @@
 
 
 
-
 <label for="">Password</label>
 <input type="password" name = "password" ><br>
 
@@ -62,7 +61,23 @@
 
 
 <button type = "submit">UPDATE USER</button>
-<button type="submit">    <a href="/users/<?= $user['id']?>/delete">Delete User</a></button>
+
+
+
     </form>
+
+
+<form action="/users/<?= $user['id']?>/delete" method="post">
+
+<?=   csrf_field()?>
+
+
+<button type="submit">   Delete User</button>
+
+
+</form>
+
+
+
 </body>
 </html>

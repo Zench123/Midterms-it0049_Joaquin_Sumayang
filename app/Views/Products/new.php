@@ -39,14 +39,12 @@ value="<?= old('name')?>">
 
 <br>
 <label for="">ITEM PRICE</label>
-<input type="text" name = "price"
-
-value="<?= old('price')?>">
+<input type="number" name="price" step="0.01" value="<?= old('price') ?>">
 
 <br>
 
 <label for="">ITEM QUANTITY</label>
-<input type="num" name = "stock_quantity" value="<?= old('stock_quantity')?>">
+<input type="number" name = "stock_quantity" value="<?= old('stock_quantity')?>"required min="0">
 
 
 
@@ -55,7 +53,7 @@ value="<?= old('price')?>">
 
 <br>
 <button type = "submit">ADD PRODUCT</button><br>
-<button > <a href="/Products">To PRODUCTS LIST</a></button>
+ <a href="/Products">To PRODUCTS LIST</a>
 </form>
 
 

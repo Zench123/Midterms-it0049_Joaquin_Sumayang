@@ -57,7 +57,7 @@ value="<?= old('username')?>">
 <input type="file" name = "avatar">
 
 
-<button type = "submit"> add user</button>
+<button type = "submit"> ADD user</button>
 </form>
 
 

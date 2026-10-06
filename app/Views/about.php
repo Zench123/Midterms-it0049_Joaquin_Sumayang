@@ -27,7 +27,39 @@
 <body>
 
 
-<h1> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non voluptates ipsam dolor similique nam. Ducimus sunt nobis minima praesentium nisi consequuntur modi ullam impedit maiores! Officia consequatur dolorum ducimus quisquam.</h1>
+<h1>ABOUT PAGE</h1>
+
+<table>
+
+<th>DEVELOPER 1</th>
+<th>DEVELOPER 2</th>
+<tr>
+    <td>Rafael Miguel Joaquin</td>
+    <td>Kyle Christian Sumayang</td>
+</tr>
+
+
+<tr>
+    <td><img src="/aboutimages/Joaquin.png" alt="" width="150" height="150"></td>
+
+
+
+
+    <td><img src="/aboutimages/Sumayang.png" alt="" width="150" height="150"></td>
+</tr>
+
+<tr>
+
+
+<td></td>
+
+<td></td>
+
+</tr>
+
+
+
+</table>
 
 <!-- 
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
+    <title>USER index</title>
 </head>
 
 
@@ -14,7 +14,7 @@
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>
     <a href="/users">Users</a>
-    <a href="/users/new">Add User</a>
+  
     <a href="/profiles">Profile</a>
     <a href="/about">About</a>  
      <a href="/logout">Logout</a>
@@ -62,13 +62,16 @@
 <td>
     <a href="/users/<?= $user['id']?>/edit">Edit list</a>
 </td>
-<td>
 
-</td>
+  
+
     </tr>
 
     <?php endforeach; ?>
 
 
     </table>
+    
+    <br>
+    <button><a href="/users/new">Add User</a></button>
 </body>
