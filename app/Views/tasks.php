@@ -8,7 +8,7 @@
 <body>
     <h1>tasks list</h1>
 <nav>
-    <a href="/">Home</a>
+   
     <a href="/tasks">Tasks</a>
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>

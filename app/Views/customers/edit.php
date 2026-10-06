@@ -7,17 +7,24 @@
 </head>
 <body>
 
+
 <nav>
-    <a href="/">Home</a>
+    <!-- <a href="/">Home</a> -->
     <a href="/tasks">Tasks</a>
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>
     <a href="/users">Users</a>
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
-    <a href="/about">About</a>   <a href="/logout">Logout</a>
-</nav>
+    <a href="/about">About</a>  
+     <a href="/logout">Logout</a>
+<a href="/Products">PRODUCTS</a> 
+<a href="/Sales">SALES</a> 
 
+
+
+
+</nav>
 
 
 <form action="/customers/<?= $customer['id'] ?>/edit"method="post">
@@ -38,6 +45,10 @@
 
 <br>
 <button type = "submit">UPdate</button>
+
+<button><a href="/customers/<?= $customer['id']?>/delete">Delete User</a></button>
+
+ 
     </form>
 </body>
 </html>

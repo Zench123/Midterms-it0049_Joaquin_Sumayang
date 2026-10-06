@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add user</title>
 </head>
+
 <nav>
-    <a href="/">Home</a>
+    
     <a href="/tasks">Tasks</a>
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>
     <a href="/users">Users</a>
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
-    <a href="/about">About</a>
-    <a href="/logout">Logout</a>
-    
-</nav>
+    <a href="/about">About</a>  
+     <a href="/logout">Logout</a>
+<a href="/Products">PRODUCTS</a> 
+<a href="/Sales">SALES</a> 
 
+
+
+
+</nav>
 
 <body>
 <h1>Add User section</h1>
@@ -30,6 +35,9 @@
 <input type="text" name = "full_name"
 value="<?= old('full_name')?>">
 
+<label for="email">EMAIL</label>
+<input type="email" name = "email"
+value="<?= old('email')?>">
 
 
 <br>

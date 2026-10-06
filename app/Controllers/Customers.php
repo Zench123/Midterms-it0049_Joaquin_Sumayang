@@ -6,6 +6,19 @@ class Customers extends BaseController
 {
    
 
+
+
+
+public function delete($id){
+    $customerModel = new CustomerModel();
+  
+$customerModel ->delete($id);
+
+return redirect()->to('/customers');
+}
+
+
+
 public function index()
 {
     $customerModel = new CustomerModel();
@@ -86,6 +99,13 @@ return redirect() -> to('/customers');
 
 
 }
+
+
+
+
+
+
+
 
 
 

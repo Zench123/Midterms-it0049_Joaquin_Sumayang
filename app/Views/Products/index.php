@@ -7,9 +7,8 @@
 </head>
 
 
-
 <nav>
-    <
+
     <a href="/tasks">Tasks</a>
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>
@@ -29,23 +28,23 @@
 
 
     <table>
-
+<br>
     <tr>
 
-    <th>Avatar</th>
+    <th>PRODUCT IMAGE</th>
     <th>ID</th>
-    <th>Username</th>
-    <th>Full name</th>
-<th>Edit user</th>
-<th>Delete user</th>
+    <th>PRODUCT NAME</th>
+    <th>ITEM PRICE  </th>
+<th>EDIT ITEM</th>
+<th>DELETE ITEM</th>
 
     </tr>
-    <?php foreach ($users as $user): ?>
+       <?php foreach ($products as $product): ?>
     <tr>
     <td>
-    <?php  if(!empty($user['avatar'])): ?>
+    <?php  if(!empty($product['image'])): ?>
 
-    <img src="/uploads/<?= esc($user['avatar']) ?>" alt="user Avatar"  width ="100" height ="100"  >
+    <img src="/uploads/<?= esc($product['image']) ?>" alt="products image"  width ="100" height ="100"  >
     <?php endif; ?>
 
 
@@ -55,20 +54,29 @@
 
     </td>
 
-<td> <?= $user['id']?> </td>
-<td> <?=  esc($user['username']);?> </td>
+<td> <?= $product['id']?> </td>
+<td> <?=  esc($product['name']);?> </td>
 
-<td> <?= esc($user['full_name']);?> </td>
+<td> <?= esc($product['price']);?> </td>
 <td>
-    <a href="/users/<?= $user['id']?>/edit">Edit list</a>
+    <a href="/Products/<?= $product['id']?>/edit">Edit product</a>
 </td>
 <td>
-    <a href="/users/<?= $user['id']?>/delete">Delete User</a>
+    <a href="/Products/<?= $product['id']?>/delete">Delete products</a>
 </td>
+
+
+
+
+
     </tr>
 
+
+
     <?php endforeach; ?>
-
-
     </table>
+
+<button > <a href="/Products/new">ADD PRODUCTS</a></button>
+
+
 </body>

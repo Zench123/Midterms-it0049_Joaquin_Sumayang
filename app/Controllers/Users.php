@@ -167,6 +167,19 @@ return view('users/edit',['user'=>$user]);
 }
 
 
+//=========================
+
+public function delete($id){
+    $userModel = new UserModel();
+  
+$userModel ->delete($id);
+
+return redirect()->to('/users');
+}
+
+
+
+
 
 
 }
