@@ -63,7 +63,7 @@
     <a href="/users/<?= $user['id']?>/edit">Edit list</a>
 </td>
 <td>
-    <a href="/users/<?= $user['id']?>/delete">Delete User</a>
+
 </td>
     </tr>
 

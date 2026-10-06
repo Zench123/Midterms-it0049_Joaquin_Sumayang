@@ -40,6 +40,9 @@
 <label for="">Full name</label>
 <input type="text" name = "full_name" value ="<?= esc($user['full_name'])?>"><br>
 <br>
+<label for="">Email</label>
+<input type="email" name = "email" value ="<?= esc($user['email'])?>"><br>
+<br>
 <label for="">picture</label>
 <input type="file" name = "avatar" accept =".jpeg,.jpg,.png" ?>
 <br>
@@ -58,7 +61,8 @@
 <br>
 
 
-<button type = "submit">Udate</button>
+<button type = "submit">UPDATE USER</button>
+<button type="submit">    <a href="/users/<?= $user['id']?>/delete">Delete User</a></button>
     </form>
 </body>
 </html>

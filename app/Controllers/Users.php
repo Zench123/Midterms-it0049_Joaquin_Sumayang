@@ -32,7 +32,8 @@ public function create(){
     $rules = [ 'username' => 'required|is_unique[users.username]',
     
    'full_name'=>'required',
-   'password' => 'required'
+   'password' => 'required',
+   'email' => 'required'
     ];
 
 
@@ -58,6 +59,7 @@ $data = [
 
 'username' => $this->request->getPost('username'),
 'full_name' => $this->request->getPost('full_name'),
+'email' => $this->request->getPost('email'),
 'password' => $hashPass
 
 ];
@@ -100,7 +102,7 @@ $userModel = new UserModel();
 
 
 $rules = [ 'username' => 'required',
-'full_name' => 'required'
+'full_name' => 'required','email'=>'required'
 
 ];
 
@@ -113,7 +115,7 @@ $data = [
 
 'username' => $this->request->getPost('username'),
 'full_name' => $this->request->getPost('full_name'),
-
+'email' => $this->request->getPost('email'),
 ];
 $password = $this->request->getPost('password');
 
