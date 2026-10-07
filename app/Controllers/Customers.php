@@ -6,16 +6,16 @@ class Customers extends BaseController
 {
    
 
+// ALTER TABLE customers
+// ADD COLUMN is_archived TINYINT(1) NOT NULL DEFAULT 0;
 
-
-
-public function delete($id){
-    $customerModel = new CustomerModel();
+// public function delete($id){
+//     $customerModel = new CustomerModel();
   
-$customerModel ->delete($id);
+// $customerModel ->delete($id);
 
-return redirect()->to('/customers');
-}
+// return redirect()->to('/customers');
+// }
 
 
 
@@ -23,7 +23,7 @@ public function index()
 {
     $customerModel = new CustomerModel();
 
-    $customers = $customerModel->findAll();
+    $customers = $customerModel-> where('is_archived',0)  ->findAll();
 
     return view('customers/index', ['customers' => $customers]);
 }
@@ -102,7 +102,13 @@ return redirect() -> to('/customers');
 
 
 
+public function delete($id){
+    $customerModel = new CustomerModel();
+  
+$customerModel ->update($id,['is_archived'=>1]);
 
+return redirect()->to('/customers');
+}
 
 
 

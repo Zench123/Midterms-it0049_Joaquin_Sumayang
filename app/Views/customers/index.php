@@ -12,7 +12,7 @@
  
     <a href="/tasks">Tasks</a>
     <a href="/customers">Customers</a>
-    <a href="/customers/new">Add Customer</a>
+
     <a href="/users">Users</a>
     <a href="/users/new">Add User</a>
     <a href="/profiles">Profile</a>
@@ -60,4 +60,7 @@
 
 
     </table>
+
+    <button><a href="/customers/new">Add Customer</a></button>
+
 </body>

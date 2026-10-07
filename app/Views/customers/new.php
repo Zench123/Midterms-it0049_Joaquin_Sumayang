@@ -47,11 +47,11 @@ value="<?= old('email')?>">
 <br>
 
 
-<label for="phone">Phone</label>
-<input type="text" name = "phone">
-
-
-<button type = "submit"> add customer</button>
+<label for="name">PHONE NUMBER</label>
+<input type="text" name = "phone"
+value="<?= old('phone')?>">
+<br>
+<button type = "submit"> ADD CUSTOMER</button>
 </form>
 
 
