@@ -17,7 +17,7 @@ public function index()
 //only find !archived
     $tasks = $taskModel->where('is_archived',0)-> findAll();
 
-    return view('Task/index', ['products' => $tasks]);
+    return view('Tasks/index', ['tasks' => $tasks]);
 }
 
 
@@ -92,7 +92,7 @@ $data = [
 // }
 
 $taskModel -> insert($data);
-return redirect() -> to('/Products');
+return redirect() -> to('/tasks');
 
 
 
@@ -171,7 +171,7 @@ $taskModel -> update($id,$data);
 
 
 
-return redirect() -> to('/Tasks');
+return redirect() -> to('/tasks');
 
 
 }
@@ -185,7 +185,7 @@ $tasks = $taskModel -> find($id);
 
 
 
-return view('Products/edit',['tasks'=>$tasks]);
+return view('Tasks/edit',['tasks'=>$tasks]);
 }
 
 

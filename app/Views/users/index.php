@@ -13,13 +13,14 @@
     <a href="/customers">Customers</a>
     <a href="/customers/new">Add Customer</a>
     <a href="/users">Users</a>
-    <a href="/users/new">Add User</a>
-    
+    <a href="/tasks">Tasks List</a>
+     <a href="/about">About</a>  
     <a href="/about">About</a>  
-     <a href="/logout">Logout</a>
+     
 <a href="/Products">PRODUCTS</a> 
-<a href="/sales/history">SALES</a> 
+<a href="/sales/history">SALES</a> <br>
 
+<a href="/logout">Logout</a>
 
 </nav>
 <body>
