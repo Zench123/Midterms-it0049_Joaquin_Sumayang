@@ -14,8 +14,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/about', 'About::index');
 
 
-
-
+//sales
 
 
 // Customers
@@ -85,8 +84,9 @@ $routes->get('/Products/(:num)/delete', 'Products::delete/$1',['filter' => 'auth
 
 //sales routes
 
-
-
+$routes->get('sales/history', 'Sales::history',['filter' => 'auth']);
+$routes->get('sales/new', 'Sales::new',['filter' => 'auth']);
+$routes->post('sales/new', 'Sales::create',['filter' => 'auth']);
 
 //  $routes->post('/logout', 'Auth::authorize');
 // // ['filter' => 'auth']

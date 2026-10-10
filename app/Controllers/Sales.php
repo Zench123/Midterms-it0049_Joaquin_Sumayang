@@ -1,210 +1,127 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\SalesModel;
+
+use App\Models\CustomerModel;
+use App\Models\ProductModel;
+use App\Models\SaleModel;
+
 class Sales extends BaseController
 {
-   //list products
-public function index()
-{
+    public function history()
+    {
+        $saleModel = new SaleModel();
+
+        $sales = $saleModel
+            ->select(
+                'sales.id,
+                 products.name AS product_name,
+                 customers.full_name AS customer_name,
+                 users.full_name AS staff_name,
+                 sales.quantity,
+                 sales.total_price,
+                 sales.created_at'
+            )
+            ->join('products', 'products.id = sales.product_id')
+            ->join('customers', 'customers.id = sales.customer_id', 'left')
+            ->join('users', 'users.id = sales.user_id')
+            ->orderBy('sales.created_at', 'DESC')
+            ->findAll();
+
+        return view('sales_history', [
+            'sales' => $sales
+        ]);
+    }
 
 
-
-
-    $SalesModel = new SalesModel();
-
-
-
-    $Sales = $SalesModel->findAll();
-
-    return view('Sales/index', ['Sales' => $Sales]);
-}
 
 public function new(){
+    $productModel = new \App\Models\ProductModel(   );
+ 
+  $productModel = new \App\Models\ProductModel();
+$customerModel = new \App\Models\CustomerModel();
 
-return view('Sales/new');
-}
+$customers = $customerModel->where('is_archived', 0)->findAll();
+ $product = $productModel->where('is_archived', 0)->findAll();
+return view('record_sale',['products' => $product,'customers' => $customers]);
+    }
+
+
 
 public function create(){
 
-
-
-    $rules = [ 'product_id' => 'required',
-    
-   'customer_id'=>'required',
-   'sold_by' => 'required',
-   'quantity' =>'required',
-   'total_price' =>'required'
-
-    ];
+ $productId = $this->request->getPost('product_id');
+    $customerId = $this->request->getPost('customer_id');
+    $quantity = $this->request->getPost('quantity');
 
 
 
-if(!$this->validate($rules)){
-    return redirect()->back()->withinput();
+    if(!is_numeric($productId) || (int) $productId<1|| !ctype_digit((string)$quantity)|| (int)$quantity < 1){
+        return redirect()->back()->withInput();
+    }
+
+$quantity =(int) $quantity;
+$customerId = ($customerId === '')? null : $customerId;
+
+$db = \Config\Database::connect();
+
+$productModel = new \App\Models\ProductModel();
+$saleModel = new \App\Models\SaleModel();
+
+//process
+$db -> transBegin();
+$product = $db->query(
+    'SELECT * FROM products WHERE id = ? AND is_archived = 0 FOR UPDATE',
+    [(int) $productId]
+)->getRowArray();
+
+if(!$product){
+    $db ->transRollback();
+    return redirect()-> back()->withInput();
+
 }
 
-$SalesModel= new SalesModel();
 
-// $password = $this->request->getPost('password');
-// $hashPass = password_hash($password, PASSWORD_DEFAULT);
+$stock = (int) $product['stock_quantity'];
 
 
+if($quantity >$stock){
+    $db -> transRollback();
 
-// dd($password);
+    return redirect()-> withInput();
+}
 
 
+//calculation
+$total = (float) $product ['price']* $quantity;
 
-
-$data = [
-
-'product_id' => $this->request->getPost('product_id'),
-'customer_id' => $this->request->getPost('customer_id'),
-'sold_by' => $this->request->getPost('sold_by'),
-'quantity' => $this->request->getPost('quantity'),
-'total_price' => $this->request->getPost('total_price')
-
+$saleData = [
+        'product_id' => (int) $productId,
+        'customer_id' => $customerId,
+        'user_id' => session()->get('user_id'),
+        'quantity' => $quantity,
+        'total_price' => $total
 ];
+if(!$saleModel ->insert($saleData)){
+
+$db ->transRollback();
+return redirect()->withInput();
+}
 
 
+//devcrease stock
 
 
-// $avatar = $this->request->getFile('avatar');
-
-// if($avatar && $avatar -> isValid() && !$avatar -> hasMoved()){
-
+$newStock = $stock - $quantity;
+$productModel -> update((int)$productId,['stock_quantity' => $newStock]);
 
 
-// $avatarRules = ['avatar' => ['rules' => [   'max_size[avatar,2048]', 'is_image[avatar]','mime_in[avatar,image/jpg,image/jpeg,image/png]'    ]]];
-
-
-
-
-// if (!$this->validate($avatarRules)) {
-//     return redirect()->back()->withInput();
-// }
-
-// $newName = $avatar ->getRandomName();
-
-// $avatar -> move(FCPATH .'uploads',$newName);
-
-// $data['avatar'] = $newName;
-
-// }
-
-$SalesModel -> insert($data);
-return redirect() -> to('/Sales');
+$db ->transCommit();
+return redirect() -> to('/sales/history');
 
 
 
 }
-
-
-
-//update
-public function update($id){
-$SalesModel = new SalesModel();
-
-
-
-
-    $rules = [ 'product_id' => 'required',
-    
-   'customer_id'=>'required',
-   'sold_by' => 'required',
-   'quantity' =>'required',
-   'total_price' =>'required'
-
-    ];
-
-if(!$this -> validate($rules)){
-    return redirect()->back()->withInput();
-}
-
-
-
-
-
-
-
-
-$data = [
-
-'product_id' => $this->request->getPost('product_id'),
-'customer_id' => $this->request->getPost('customer_id'),
-'sold_by' => $this->request->getPost('sold_by'),
-'quantity' => $this->request->getPost('quantity'),
-'total_price' => $this->request->getPost('total_price'),
-
-];
-
-
-
-
-// $password = $this->request->getPost('password');
-
-// if (!empty($password)) {
-//     $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-// }
-
-
-// $avatar = $this->request->getFile('avatar');
-
-// if($avatar && $avatar -> isValid() && !$avatar -> hasMoved()){
-
-
-
-// $avatarRules = ['avatar' => ['rules' => [   'max_size[avatar,2048]', 'is_image[avatar]','mime_in[avatar,image/jpg,image/jpeg,image/png]'    ]]];
-
-
-
-
-// if (!$this->validate($avatarRules)) {
-//     return redirect()->back()->withInput();
-// }
-
-// $newName = $avatar ->getRandomName();
-
-// $avatar -> move(FCPATH .'uploads',$newName);
-
-// $data['avatar'] = $newName;
-
-// }
-
-$SalesModel -> update($id,$data);
-
-
-
-return redirect() -> to('/Sales');
-
-
-}
-
-
-
-public function edit($id){
-$SalesModel = new SalesModel();
-
-$Sales = $SalesModel -> find($id);
-
-
-
-return view('Sales/edit',['Sales'=>$Sales]);
-}
-
-
-//=========================
-
-public function delete($id){
-    $SalesModel = new SalesModel();
-  
-$SalesModel ->delete($id);
-
-return redirect()->to('/Sales');
-}
-
-
-
 
 
 
